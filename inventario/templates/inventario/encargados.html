@@ -1,0 +1,29 @@
+{% extends 'inventario/base.html' %}
+{% block title %}
+Encargados
+{% endblock %}
+
+{% block header %}
+Encargados
+{% endblock %}
+
+{% block body %}
+{% if encargados %}
+    <table border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Carrera</th>
+            <th>Fecha de Registro</th>
+        </tr>
+        {% for encargado in encargados %}
+            <tr>
+                <td>{{ encargado.nombre }}</td>
+                <td>{{ encargado.carrera }}</td>
+                <td>{{ encargado.fecha_registro }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h3>No existen encargados!</h3>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'inventario/base.html' %}
+{% block title %}
+Encargado
+{% endblock %}
+
+{% block header %}
+Encargado
+{% endblock %}
+
+{% block body %}
+<h2>{{ object.nombre }}</h2>
+<h3>{{ object.carrera }}</h3>
+<b>id:</b> {{ object.id }} <br>
+<b>fecha de creacion:</b> {{ object.fecha_registro }}
+{% endblock %}

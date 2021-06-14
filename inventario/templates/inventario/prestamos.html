@@ -1,0 +1,29 @@
+{% extends 'inventario/base.html' %}
+{% block title %}
+Prestamos
+{% endblock %}
+
+{% block header %}
+Prestamos
+{% endblock %}
+
+{% block body %}
+{% if prestamos %}
+    <table border="1">
+        <tr>
+            <th>Item</th>
+            <th>Fecha de Prestamo</th>
+            <th>Fecha de Devolución</th>
+        </tr>
+        {% for prestamo in prestamos %}
+            <tr>
+                <td><a href="{% url 'inventario:detalle_item' prestamo.item.id %}">{{ prestamo.item }}</a></td>
+                <td>{{ prestamo.fecha_prestamo }}</td>
+                <td>{{ prestamo.fecha_devolucion }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h3>No existen prestamos!</h3>
+{% endif %}
+{% endblock %}

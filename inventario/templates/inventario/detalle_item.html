@@ -1,0 +1,28 @@
+{% extends 'inventario/base.html' %}
+{% block title %}
+    Detalle Item
+{% endblock %}
+
+{% block header %}
+    Detalle Item
+{% endblock %}
+
+{% block body %}
+    <h2>{{ object.nombre }}</h2>
+    <h3>{{ object.marca }}</h3>
+    <b>id:</b> {{ object.id }} <br>
+    <b>categoria:</b> {{ object.categoria }} <br>
+    <b>encargado:</b> {{ object.encargado }} <br>
+    <b>cantidad:</b> {{ object.cantidad }} <br>
+    <b>fecha de creacion:</b> {{ object.fecha_creacion }}
+
+    {% if object.is_available %}
+    <form action="{% url 'inventario:detalle_item' object.id%}" method="POST">
+        {% csrf_token %}
+        {{ prestamo_form }}
+        <input type="submit" value="Solicitar Prestamo">
+    </form>
+        {% else %}
+        <h3>Item no disponible</h3>
+    {% endif %}
+{% endblock %}

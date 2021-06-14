@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratorio: {% block title %}{% endblock %}</title>
+</head>
+<body>
+<h2>
+{% block header %}{% endblock %}
+</h2>
+<hr>
+<a href="{% url 'inventario:items' %}">Items</a> - <a href="{% url 'inventario:encargados' %}">Encargados</a> - <a
+        href="{% url 'inventario:prestamos' %}">Prestamos</a> <br>
+<hr>
+{% block body %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 1300:80
+    volumes:
+      - static_volume:/app/static
+    depends_on:
+      - web
+    restart: "on-failure"
+
+  web:
+    build: .
+    command: ./start.sh
+    volumes:
+    - .:/webservice:rw
+    - static_volume:/app/static
+    image: laboratorio
+    expose:
+      - 8000
+    restart: "on-failure"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=laboratorio_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    restart: "on-failure"
+
+volumes:
+  postgres_data:
+  static_volume:
+
