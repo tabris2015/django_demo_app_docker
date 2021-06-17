@@ -19,7 +19,13 @@ Prestamos
             <tr>
                 <td><a href="{% url 'inventario:detalle_item' prestamo.item.id %}">{{ prestamo.item }}</a></td>
                 <td>{{ prestamo.fecha_prestamo }}</td>
-                <td>{{ prestamo.fecha_devolucion }}</td>
+                <td>
+                    {% if not prestamo.fecha_devolucion %}
+                        -
+                    {% else %}
+                    {{ prestamo.fecha_devolucion }}
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
     </table>
